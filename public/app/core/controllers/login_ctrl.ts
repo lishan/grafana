@@ -4,7 +4,7 @@ import config from 'app/core/config';
 
 export class LoginCtrl {
   /** @ngInject */
-  constructor($scope, backendSrv, contextSrv, $location) {
+  constructor($scope, backendSrv, contextSrv, $location, $http, $sce) {
     $scope.formModel = {
       user: '',
       email: '',
@@ -28,8 +28,29 @@ export class LoginCtrl {
     $scope.loginMode = true;
     $scope.submitBtnText = 'Log in';
 
+    $scope.ssologin = function(trustedUrl) {
+      $http.jsonp(trustedUrl, { jsonpCallbackParam: 'jsonpCallback' }).then(function(data) {
+        var token = data.data.token;
+
+        if (null !== token && undefined !== token && token !== '') {
+          $scope.formModel = {
+            user: token,
+            email: '',
+            password: token,
+          };
+          backendSrv.post('/login', $scope.formModel).then(function(result) {
+            $scope.result = result;
+            $scope.toGrafana();
+          });
+        }
+      });
+    };
+
     $scope.init = function() {
       $scope.$watch('loginMode', $scope.loginModeChanged);
+      var url = 'http://10.1.236.114:18080/occiMain/api/v1/sso/login';
+      var trustedUrl = $sce.trustAsResourceUrl(url);
+      $scope.ssologin(trustedUrl);
 
       if (config.loginError) {
         $scope.appEvent('alert-warning', ['Login Failed', config.loginError]);

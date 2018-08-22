@@ -11,11 +11,13 @@ export class SideMenuCtrl {
   loginUrl: string;
   isSignedIn: boolean;
   isOpenMobile: boolean;
+  isGrafanaAdmin: boolean;
 
   /** @ngInject */
   constructor(private $scope, private $rootScope, private $location, private contextSrv, private $timeout) {
     this.isSignedIn = contextSrv.isSignedIn;
     this.user = contextSrv.user;
+    this.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
 
     let navTree = _.cloneDeep(config.bootData.navTree);
     this.mainLinks = _.filter(navTree, item => !item.hideFromMenu);
@@ -27,6 +29,11 @@ export class SideMenuCtrl {
       if (profileNode) {
         profileNode.showOrgSwitcher = true;
       }
+    }
+
+    if (!contextSrv.isGrafanaAdmin) {
+      var body = $('body');
+      body.toggleClass('sidemenu-hidden');
     }
 
     this.$scope.$on('$routeChangeSuccess', () => {

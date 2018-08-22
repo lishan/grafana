@@ -7,9 +7,10 @@ export class DashNavCtrl {
   dashboard: DashboardModel;
   navModel: NavModel;
   titleTooltip: string;
+  isGrafanaAdmin: boolean;
 
   /** @ngInject */
-  constructor(private $scope, private dashboardSrv, private $location, public playlistSrv) {
+  constructor(private $scope, private dashboardSrv, private $location, public playlistSrv, private contextSrv) {
     appEvents.on('save-dashboard', this.saveDashboard.bind(this), $scope);
 
     if (this.dashboard.meta.isSnapshot) {
@@ -19,6 +20,7 @@ export class DashNavCtrl {
         this.titleTooltip += '<br>Expires: &nbsp;' + moment(meta.expires).fromNow() + '<br>';
       }
     }
+    this.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
   }
 
   toggleSettings() {

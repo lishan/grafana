@@ -5,7 +5,11 @@
       <i class="icon-gf icon-gf-grafana_wordmark"></i>
     </div>
     <div class="login-outer-box">
-      <div class="login-inner-box" id="login-view">
+      <h3 style="padding-top: 50px;padding-left: 50px;">
+          <strong>You cannot login.</strong><br/><br/>
+          <span>please inform your administrator.</span>
+      </h3>
+      <!-- <div class="login-inner-box" id="login-view">
         <form name="loginForm" class="login-form-group gf-form-group" ng-hide="disableLoginForm">
           <div class="login-form">
             <input type="text" name="username" class="gf-form-input login-form-input" required ng-model='formModel.user' placeholder={{loginHint}}
@@ -16,6 +20,14 @@
               placeholder="password">
           </div>
           <div class="login-button-group">
+            <button type="submit" class="btn btn-large p-x-2" ng-click="submit();" ng-class="{'btn-inverse': !loginForm.$valid, 'btn-primary': loginForm.$valid}">
+               Log In
+             </button>
+             <div class="small login-button-forgot-password">
+               <a href="user/password/send-reset-email">
+                 Forgot your password?
+               </a>
+             </div>
           </div>
         </form>
         <div class="text-center login-divider" ng-show="oauthEnabled">
@@ -91,6 +103,6 @@
         </form>
       </div>
       <div class="clearfix"></div>
-    </div>
+    </div> -->
   </div>
 </div>

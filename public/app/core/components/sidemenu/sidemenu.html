@@ -1,14 +1,15 @@
-<a class="sidemenu__logo" ng-click="ctrl.toggleSideMenu()">
+<a class="sidemenu__logo" ng-click="ctrl.toggleSideMenu()" ng-if="ctrl.isGrafanaAdmin">
   <img src="public/img/grafana_icon.svg"></img>
 </a>
 
-<a class="sidemenu__logo_small_breakpoint" ng-click="ctrl.toggleSideMenuSmallBreakpoint()">
+<a class="sidemenu__logo_small_breakpoint" ng-click="ctrl.toggleSideMenuSmallBreakpoint()" ng-if="ctrl.user.isGrafanaAdmin">
   <i class="fa fa-bars"></i>
   <span class="sidemenu__close">
     <i class="fa fa-times"></i>&nbsp;Close</span>
 </a>
 
-<div class="sidemenu__top">
+
+<div class="sidemenu__top" ng-if="ctrl.isGrafanaAdmin">
   <div ng-repeat="item in ::ctrl.mainLinks" class="sidemenu-item dropdown">
     <a href="{{::item.url}}" class="sidemenu-link" target="{{::item.target}}">
       <span class="icon-circle sidemenu-icon">
@@ -30,7 +31,7 @@
   </div>
 </div>
 
-<div class="sidemenu__bottom">
+<div class="sidemenu__bottom" ng-if="ctrl.isGrafanaAdmin">
   <div ng-show="::!ctrl.isSignedIn" class="sidemenu-item">
     <a href="{{ctrl.loginUrl}}" class="sidemenu-link" target="_self">
       <span class="icon-circle sidemenu-icon">

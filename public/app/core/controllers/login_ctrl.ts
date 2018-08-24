@@ -29,20 +29,30 @@ export class LoginCtrl {
     $scope.submitBtnText = 'Log in';
 
     $scope.ssologin = function(trustedUrl) {
-      $http.jsonp(trustedUrl, { jsonpCallbackParam: 'jsonpCallback' }).then(function(data) {
-        var token = data.data.token;
+      // $http.jsonp(trustedUrl, { jsonpCallbackParam: 'jsonpCallback' }).then(function(data) {
+      //   var token = data.data.token;
 
-        if (null !== token && undefined !== token && token !== '') {
-          $scope.formModel = {
-            user: token,
-            email: '',
-            password: token,
-          };
-          backendSrv.post('/login', $scope.formModel).then(function(result) {
-            $scope.result = result;
-            $scope.toGrafana();
-          });
-        }
+      //   if (null !== token && undefined !== token && token !== '') {
+      //     $scope.formModel = {
+      //       user: token,
+      //       email: '',
+      //       password: token,
+      //     };
+      //     backendSrv.post('/login', $scope.formModel).then(function(result) {
+      //       $scope.result = result;
+      //       $scope.toGrafana();
+      //     });
+      //   }
+      // });
+
+      $scope.formModel = {
+        user: 'admin',
+        email: '',
+        password: 'admin',
+      };
+      backendSrv.post('/login', $scope.formModel).then(function(result) {
+        $scope.result = result;
+        $scope.toGrafana();
       });
     };
 

@@ -50,6 +50,15 @@
 		</button>
 	</div>
 
+	<div class="navbar-buttons">
+		<button class="btn navbar-button navbar-button--primary" ng-click="ctrl.switchOrg()">
+			<i class="fa fa-home"></i> {{ctrl.org}}
+		</button>
+		<button class="btn navbar-button navbar-button--primary">
+			<i class="fa fa-user"></i>&nbsp;{{ctrl.userName}}
+		</button>
+	</div>
+
 </div>
 
 <dashboard-search></dashboard-search>

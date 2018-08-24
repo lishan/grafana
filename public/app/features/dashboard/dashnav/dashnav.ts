@@ -8,6 +8,8 @@ export class DashNavCtrl {
   navModel: NavModel;
   titleTooltip: string;
   isGrafanaAdmin: boolean;
+  userName: string;
+  org: string;
 
   /** @ngInject */
   constructor(private $scope, private dashboardSrv, private $location, public playlistSrv, private contextSrv) {
@@ -21,6 +23,20 @@ export class DashNavCtrl {
       }
     }
     this.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
+    this.userName = '';
+    this.org = '';
+    if (contextSrv.user && contextSrv.user.name) {
+      this.userName = contextSrv.user.name;
+    }
+    if (contextSrv.user && contextSrv.user.orgName) {
+      this.org = contextSrv.user.orgName;
+    }
+  }
+
+  switchOrg() {
+    appEvents.emit('show-modal', {
+      templateHtml: '<org-switcher dismiss="dismiss()"></org-switcher>',
+    });
   }
 
   toggleSettings() {

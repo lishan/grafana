@@ -2,6 +2,7 @@ import _ from 'lodash';
 import config from 'app/core/config';
 import $ from 'jquery';
 import coreModule from '../../core_module';
+import appEvents from 'app/core/app_events';
 
 export class SideMenuCtrl {
   user: any;
@@ -54,7 +55,6 @@ export class SideMenuCtrl {
   }
 
   switchOrg() {
-    console.log(this.$rootScope);
     this.$rootScope.appEvent('show-modal', {
       templateHtml: '<org-switcher dismiss="dismiss()"></org-switcher>',
     });

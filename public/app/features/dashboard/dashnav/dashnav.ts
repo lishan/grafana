@@ -22,13 +22,13 @@ export class DashNavCtrl {
         this.titleTooltip += '<br>Expires: &nbsp;' + moment(meta.expires).fromNow() + '<br>';
       }
     }
-    this.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
+    this.isGrafanaAdmin = this.contextSrv.isGrafanaAdmin;
     this.userName = '';
     this.org = '';
-    if (contextSrv.user && contextSrv.user.name) {
+    if (this.contextSrv.user && this.contextSrv.user.name) {
       this.userName = contextSrv.user.name;
     }
-    if (contextSrv.user && contextSrv.user.orgName) {
+    if (this.contextSrv.user && this.contextSrv.user.orgName) {
       this.org = contextSrv.user.orgName;
     }
   }

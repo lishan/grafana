@@ -48,7 +48,7 @@ export class LoginCtrl {
 
     $scope.init = function() {
       $scope.$watch('loginMode', $scope.loginModeChanged);
-      var url = 'http://10.1.236.114:18080/occiMain/api/v1/sso/login';
+      var url = 'http://localhost:8080/occiMain/api/v1/sso/login';
       var trustedUrl = $sce.trustAsResourceUrl(url);
       $scope.ssologin(trustedUrl);
 

@@ -1,6 +1,6 @@
 <div class="navbar">
 
-	<div>
+	<div ng-if="ctrl.isGrafanaAdmin">
 		<a class="navbar-page-btn" ng-click="ctrl.showSearch()">
 			<i class="gicon gicon-dashboard"></i>
 			{{ctrl.dashboard.title}}
@@ -8,7 +8,7 @@
 		</a>
 	</div>
 
-	<div class="navbar-buttons navbar-buttons--playlist" ng-if="ctrl.playlistSrv.isPlaying">
+	<div class="navbar-buttons navbar-buttons--playlist" ng-if="ctrl.playlistSrv.isPlaying" ng-if="ctrl.isGrafanaAdmin">
 		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.prev()"><i class="fa fa-step-backward"></i></a>
 		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.stop()"><i class="fa fa-stop"></i></a>
 		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.next()"><i class="fa fa-step-forward"></i></a>
@@ -54,7 +54,7 @@
 		<button class="btn navbar-button navbar-button--primary" ng-click="ctrl.switchOrg()">
 			<i class="fa fa-home"></i> {{ctrl.org}}
 		</button>
-		<button class="btn navbar-button navbar-button--primary">
+		<button class="btn navbar-button navbar-button--primary" ng-if="ctrl.isGrafanaAdmin">
 			<i class="fa fa-user"></i>&nbsp;{{ctrl.userName}}
 		</button>
 	</div>
